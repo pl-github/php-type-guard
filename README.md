@@ -1,0 +1,39 @@
+# Type Guard
+
+A PHP library to ensure correctness of types providing a readable interface.
+
+The library is helpfull to
+
+## Example
+
+```php
+$row = $this->fetchProjectRow(123);
+
+$project = new Project(
+     notNull(asInt($row['id'])),
+     notNull(asString($row['name'])),
+     notNull(asDateTimeImmutable($row['createdAt'])),
+     notNull(asBool($row['is_assigned'])),
+     asDateTimeImmutable($row['closedAt']),
+     asFloat($row['rating']),
+);
+```
+
+## Provided helper functions
+
+### Type Conversion
+* `asBool($value)` Converts input value to a boolean, but passes `null`.
+* `asFloat($value)` Converts input value to a float, but passes `null`.
+* `asInt($value)` Converts input value to a int, but passes `null`.
+* `asDateTimeImmutable($value)` Converts input value to a `DateTimeImmutable` object, but passes `null`.
+* `asDateTimeString($value)` Converts input value to a date string including the timezone, but passes `null`.
+* `asString($value)` Converts input value to a string, but passes `null`.
+
+### Assertions
+* `notNull($value)` Throws an exception if the value is `null` otherwise it passes the original value.
+
+## Installation
+
+```shell
+$ composer require plook/type-guard
+```
