@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Plook\Tests\TypeGuard\Convert;
 
 use DateTimeImmutable;
+use DateTimeZone;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
@@ -22,6 +23,18 @@ use function sprintf;
 #[CoversFunction('\Plook\TypeGuard\Convert\asString')]
 final class AsDateTimeImmutableTest extends TestCase
 {
+    private readonly DateTimeZone $originalTimeZone;
+
+    protected function setUp(): void
+    {
+        $this->originalTimeZone = Convert::timeZone();
+    }
+
+    protected function tearDown(): void
+    {
+        Convert::timeZone($this->originalTimeZone);
+    }
+
     public function testConvertsStrings(): void
     {
         $result = asDateTimeImmutable('2010-09-08T07:06:05+02:00');
@@ -40,9 +53,7 @@ final class AsDateTimeImmutableTest extends TestCase
 
     public function testConvertsDateTimeImmutableWithSameTimeZone(): void
     {
-        $dateTimeZone = asDateTimeImmutable(new DateTimeImmutable())->getTimezone();
-
-        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05+00:00', $dateTimeZone));
+        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05', Convert::timeZone()));
 
         self::assertInstanceOf(DateTimeImmutable::class, $result);
         self::assertSame('2010-09-08T07:06:05+00:00', $result->format('c'));
@@ -50,10 +61,32 @@ final class AsDateTimeImmutableTest extends TestCase
 
     public function testConvertsDateTimeImmutableWithDifferentTimeZone(): void
     {
-        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05+02:00'));
+        $dateTimeZone = new DateTimeZone('Australia/Adelaide');
+
+        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05', $dateTimeZone));
 
         self::assertInstanceOf(DateTimeImmutable::class, $result);
-        self::assertSame('2010-09-08T05:06:05+00:00', $result->format('c'));
+        self::assertSame('2010-09-07T21:36:05+00:00', $result->format('c'));
+    }
+
+    public function testConvertsDateTimeImmutableDefaultTimeZoneCanBeChangedByDateTimeZone(): void
+    {
+        Convert::timeZone(new DateTimeZone('Australia/Adelaide'));
+
+        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05+00:00'));
+
+        self::assertInstanceOf(DateTimeImmutable::class, $result);
+        self::assertSame('2010-09-08T16:36:05+09:30', $result->format('c'));
+    }
+
+    public function testConvertsDateTimeImmutableDefaultTimeZoneCanBeChangedByTimeZoneName(): void
+    {
+        Convert::timeZone('Australia/Adelaide');
+
+        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05+00:00'));
+
+        self::assertInstanceOf(DateTimeImmutable::class, $result);
+        self::assertSame('2010-09-08T16:36:05+09:30', $result->format('c'));
     }
 
     public function testDoesNotTouchNull(): void

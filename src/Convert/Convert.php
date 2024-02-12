@@ -145,9 +145,13 @@ final class Convert
         return $value->format('c');
     }
 
-    private static function timeZone(): DateTimeZone
+    public static function timeZone(DateTimeZone|string|null $timeZone = null): DateTimeZone
     {
-        if (!self::$dateTimeZone instanceof DateTimeZone) {
+        if (is_string($timeZone)) {
+            self::$dateTimeZone = new DateTimeZone($timeZone);
+        } elseif ($timeZone instanceof DateTimeZone) {
+            self::$dateTimeZone = $timeZone;
+        } elseif (!self::$dateTimeZone instanceof DateTimeZone) {
             self::$dateTimeZone = new DateTimeZone(ini_get('date.timezone'));
         }
 
