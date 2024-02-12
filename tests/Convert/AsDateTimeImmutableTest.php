@@ -32,20 +32,20 @@ final class AsDateTimeImmutableTest extends TestCase
 
     public function testConvertsStringables(): void
     {
-        $result = asDateTimeImmutable(new StringableString('2010-09-08T07:06:05+02:00'));
+        $result = asDateTimeImmutable(new StringableString('2010-09-08T07:06:05+00:00'));
 
         self::assertInstanceOf(DateTimeImmutable::class, $result);
-        self::assertSame('2010-09-08T07:06:05+02:00', $result->format('c'));
+        self::assertSame('2010-09-08T07:06:05+00:00', $result->format('c'));
     }
 
     public function testConvertsDateTimeImmutableWithSameTimeZone(): void
     {
         $dateTimeZone = asDateTimeImmutable(new DateTimeImmutable())->getTimezone();
 
-        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05+02:00', $dateTimeZone));
+        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05+00:00', $dateTimeZone));
 
         self::assertInstanceOf(DateTimeImmutable::class, $result);
-        self::assertSame('2010-09-08T07:06:05+02:00', $result->format('c'));
+        self::assertSame('2010-09-08T07:06:05+00:00', $result->format('c'));
     }
 
     public function testConvertsDateTimeImmutableWithDifferentTimeZone(): void
@@ -53,7 +53,7 @@ final class AsDateTimeImmutableTest extends TestCase
         $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05+02:00'));
 
         self::assertInstanceOf(DateTimeImmutable::class, $result);
-        self::assertSame('2010-09-08T07:06:05+02:00', $result->format('c'));
+        self::assertSame('2010-09-08T05:06:05+00:00', $result->format('c'));
     }
 
     public function testDoesNotTouchNull(): void
