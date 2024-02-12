@@ -1,0 +1,50 @@
+# https://help.github.com/en/categories/automating-your-workflow-with-github-actions
+
+name: "Build"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  tests:
+    name: "Tests"
+
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        php-version:
+          - "8.2"
+          - "8.3"
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v3"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          coverage: "none"
+          php-version: "${{ matrix.php-version }}"
+
+      - name: "Cache dependencies"
+        uses: "actions/cache@v2"
+        with:
+          path: "~/.composer/cache"
+          key: "php-${{ matrix.php-version }}-composer-${{ hashFiles('**/composer.json') }}"
+          restore-keys: "php-${{ matrix.php-version }}-composer-"
+
+      - name: "Install highest dependencies"
+        run: "composer update --prefer-dist --no-interaction --no-progress --no-suggest"
+
+      - name: "Code Style"
+        run: "vendor/bin/phpcs"
+
+      - name: "Static Analysis"
+        run: "vendor/bin/phpstan analyze"
+
+      - name: "Tests"
+        run: "vendor/bin/phpunit"
