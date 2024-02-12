@@ -2,7 +2,7 @@
     "name": "plook/type-guard",
     "type": "library",
     "description": "Library to ensure correctness of types with a readable interface.",
-    "license": "LGPL v2.1",
+    "license": "LGPL-2.1-or-later",
     "authors": [
         {
             "name": "Phillip Look",
