@@ -46,5 +46,8 @@ jobs:
       - name: "Static Analysis"
         run: "vendor/bin/phpstan analyze"
 
+      - name: "Rector"
+        run: "vendor/bin/rector --dry-run"
+
       - name: "Tests"
         run: "vendor/bin/phpunit"
