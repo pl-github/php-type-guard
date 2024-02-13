@@ -22,6 +22,18 @@ use function sprintf;
 #[CoversFunction('\Plook\TypeGuard\Convert\asString')]
 final class AsDateTimeStringTest extends TestCase
 {
+    private readonly string $originalDateTimeFormat;
+
+    protected function setUp(): void
+    {
+        $this->originalDateTimeFormat = Convert::dateTimeFormat();
+    }
+
+    protected function tearDown(): void
+    {
+        Convert::dateTimeFormat($this->originalDateTimeFormat);
+    }
+
     public function testConvertsStrings(): void
     {
         self::assertSame('2010-09-08T07:06:05+02:00', asDateTimeString('2010-09-08T07:06:05+02:00'));
@@ -33,6 +45,13 @@ final class AsDateTimeStringTest extends TestCase
             '2010-09-08T07:06:05+02:00',
             asDateTimeString(new StringableString('2010-09-08T07:06:05+02:00')),
         );
+    }
+
+    public function testDateTimeFormatCanBeChanged(): void
+    {
+        Convert::dateTimeFormat('Y-m-d');
+
+        self::assertSame('2010-09-08', asDateTimeString('2010-09-08T07:06:05+02:00'));
     }
 
     public function testDoesNotTouchNull(): void

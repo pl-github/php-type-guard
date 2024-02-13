@@ -19,6 +19,8 @@ final class Convert
 {
     private static DateTimeZone|null $dateTimeZone = null;
 
+    private static string $dateTimeFormat = 'c';
+
     /** @return ($value is null ? null : bool) */
     public static function asBool(mixed $value): bool|null
     {
@@ -142,7 +144,7 @@ final class Convert
 
         $value = asDateTimeImmutable($value);
 
-        return $value->format('c');
+        return $value->format(self::dateTimeFormat());
     }
 
     public static function timeZone(DateTimeZone|string|null $timeZone = null): DateTimeZone
@@ -156,5 +158,14 @@ final class Convert
         }
 
         return self::$dateTimeZone;
+    }
+
+    public static function dateTimeFormat(string|null $dateTimeFormat = null): string
+    {
+        if ($dateTimeFormat !== null) {
+            self::$dateTimeFormat = $dateTimeFormat;
+        }
+
+        return self::$dateTimeFormat;
     }
 }
