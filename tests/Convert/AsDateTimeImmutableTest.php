@@ -27,12 +27,12 @@ final class AsDateTimeImmutableTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->originalTimeZone = Convert::timeZone();
+        $this->originalTimeZone = Convert::instance()->timeZone();
     }
 
     protected function tearDown(): void
     {
-        Convert::timeZone($this->originalTimeZone);
+        Convert::instance()->timeZone($this->originalTimeZone);
     }
 
     public function testConvertsStrings(): void
@@ -53,7 +53,7 @@ final class AsDateTimeImmutableTest extends TestCase
 
     public function testConvertsDateTimeImmutableWithSameTimeZone(): void
     {
-        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05', Convert::timeZone()));
+        $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05', Convert::instance()->timeZone()));
 
         self::assertInstanceOf(DateTimeImmutable::class, $result);
         self::assertSame('2010-09-08T07:06:05+00:00', $result->format('c'));
@@ -71,7 +71,7 @@ final class AsDateTimeImmutableTest extends TestCase
 
     public function testConvertsDateTimeImmutableDefaultTimeZoneCanBeChangedByDateTimeZone(): void
     {
-        Convert::timeZone(new DateTimeZone('Australia/Adelaide'));
+        Convert::instance()->timeZone(new DateTimeZone('Australia/Adelaide'));
 
         $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05+00:00'));
 
@@ -81,7 +81,7 @@ final class AsDateTimeImmutableTest extends TestCase
 
     public function testConvertsDateTimeImmutableDefaultTimeZoneCanBeChangedByTimeZoneName(): void
     {
-        Convert::timeZone('Australia/Adelaide');
+        Convert::instance()->timeZone('Australia/Adelaide');
 
         $result = asDateTimeImmutable(new DateTimeImmutable('2010-09-08T07:06:05+00:00'));
 

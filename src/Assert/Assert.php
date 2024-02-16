@@ -6,6 +6,13 @@ namespace Plook\TypeGuard\Assert;
 
 final class Assert
 {
+    public static function instance(): self
+    {
+        static $instance = new self();
+
+        return $instance;
+    }
+
     /**
      * @param ?T $value
      *
@@ -13,7 +20,7 @@ final class Assert
      *
      * @template T
      */
-    public static function notNull(mixed $value): mixed
+    public function notNull(mixed $value): mixed
     {
         if ($value === null) {
             throw InvalidValue::null();

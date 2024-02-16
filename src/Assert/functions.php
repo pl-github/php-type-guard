@@ -19,6 +19,6 @@ if (!function_exists('\Plook\TypeGuard\notNull')) { // @codeCoverageIgnore
      */
     function notNull(mixed $value): mixed
     {
-        return Assert::notNull($value);
+        return Assert::instance()->notNull($value);
     }
 }

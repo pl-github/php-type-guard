@@ -15,7 +15,7 @@ if (!function_exists('\Plook\TypeGuard\asBool')) { // @codeCoverageIgnore
     /** @return ($value is null ? null : bool) */
     function asBool(mixed $value): bool|null
     {
-        return Convert::asBool($value);
+        return Convert::instance()->asBool($value);
     }
 }
 
@@ -24,7 +24,7 @@ if (!function_exists('\Plook\TypeGuard\asFloat')) { // @codeCoverageIgnore
     /** @return ($value is null ? null : float) */
     function asFloat(mixed $value): float|null
     {
-        return Convert::asFloat($value);
+        return Convert::instance()->asFloat($value);
     }
 }
 
@@ -33,7 +33,7 @@ if (!function_exists('\Plook\TypeGuard\asInt')) { // @codeCoverageIgnore
     /** @return ($value is null ? null : int) */
     function asInt(mixed $value): int|null
     {
-        return Convert::asInt($value);
+        return Convert::instance()->asInt($value);
     }
 }
 
@@ -42,7 +42,7 @@ if (!function_exists('\Plook\TypeGuard\asString')) { // @codeCoverageIgnore
     /** @return ($value is null ? null : string) */
     function asString(mixed $value): string|null
     {
-        return Convert::asString($value);
+        return Convert::instance()->asString($value);
     }
 }
 
@@ -51,7 +51,7 @@ if (!function_exists('\Plook\TypeGuard\asDateTimeImmutable')) { // @codeCoverage
     /** @return ($value is null ? null : DateTimeImmutable) */
     function asDateTimeImmutable(mixed $value): DateTimeImmutable|null
     {
-        return Convert::asDateTimeImmutable($value);
+        return Convert::instance()->asDateTimeImmutable($value);
     }
 }
 
@@ -60,6 +60,6 @@ if (!function_exists('\Plook\TypeGuard\asDateTimeString')) { // @codeCoverageIgn
     /** @return ($value is null ? null : string) */
     function asDateTimeString(mixed $value): string|null
     {
-        return Convert::asDateTimeString($value);
+        return Convert::instance()->asDateTimeString($value);
     }
 }
