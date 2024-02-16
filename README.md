@@ -42,11 +42,11 @@ $ composer require plook/type-guard
 
 ### Setting the default target time zone of `DateTimeImmutable` objects
 ```php
-Convert::timeZone('Australia/Adelaide');
-Convert::timeZone(new DateTimeZone('Australia/Adelaide'));
+Convert::instance()->timeZone('Australia/Adelaide');
+Convert::instance()->timeZone(new DateTimeZone('Australia/Adelaide'));
 ```
 
 ### Setting the default format of date time strings
 ```php
-Convert::dateTimeFormat(DateTimeInterface::ATOM);
+Convert::instance()->dateTimeFormat(DateTimeInterface::ATOM);
 ```

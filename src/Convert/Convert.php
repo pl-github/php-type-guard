@@ -17,12 +17,19 @@ use function is_string;
 
 final class Convert
 {
-    private static DateTimeZone|null $dateTimeZone = null;
+    private DateTimeZone|null $dateTimeZone = null;
 
-    private static string $dateTimeFormat = 'c';
+    private string $dateTimeFormat = 'c';
+
+    public static function instance(): self
+    {
+        static $instance = new self();
+
+        return $instance;
+    }
 
     /** @return ($value is null ? null : bool) */
-    public static function asBool(mixed $value): bool|null
+    public function asBool(mixed $value): bool|null
     {
         if ($value === null) {
             return null;
@@ -44,7 +51,7 @@ final class Convert
     }
 
     /** @return ($value is null ? null : float) */
-    public static function asFloat(mixed $value): float|null
+    public function asFloat(mixed $value): float|null
     {
         if ($value === null) {
             return null;
@@ -66,7 +73,7 @@ final class Convert
     }
 
     /** @return ($value is null ? null : int) */
-    public static function asInt(mixed $value): int|null
+    public function asInt(mixed $value): int|null
     {
         if ($value === null) {
             return null;
@@ -88,7 +95,7 @@ final class Convert
     }
 
     /** @return ($value is null ? null : string) */
-    public static function asString(mixed $value): string|null
+    public function asString(mixed $value): string|null
     {
         if ($value === null) {
             return null;
@@ -110,18 +117,18 @@ final class Convert
     }
 
     /** @return ($value is null ? null : DateTimeImmutable) */
-    public static function asDateTimeImmutable(mixed $value): DateTimeImmutable|null
+    public function asDateTimeImmutable(mixed $value): DateTimeImmutable|null
     {
         if ($value === null) {
             return null;
         }
 
         if ($value instanceof DateTimeImmutable) {
-            if ($value->getTimezone()->getName() === self::timeZone()->getName()) {
+            if ($value->getTimezone()->getName() === $this->timeZone()->getName()) {
                 return $value;
             }
 
-            return $value->setTimezone(self::timeZone());
+            return $value->setTimezone($this->timeZone());
         }
 
         if ($value instanceof Stringable) {
@@ -132,11 +139,11 @@ final class Convert
             throw NotConvertable::toDateTime($value);
         }
 
-        return new DateTimeImmutable(asString($value), self::timeZone());
+        return new DateTimeImmutable(asString($value), $this->timeZone());
     }
 
     /** @return ($value is null ? null : string) */
-    public static function asDateTimeString(mixed $value): string|null
+    public function asDateTimeString(mixed $value): string|null
     {
         if ($value === null) {
             return null;
@@ -144,28 +151,28 @@ final class Convert
 
         $value = asDateTimeImmutable($value);
 
-        return $value->format(self::dateTimeFormat());
+        return $value->format($this->dateTimeFormat());
     }
 
-    public static function timeZone(DateTimeZone|string|null $timeZone = null): DateTimeZone
+    public function timeZone(DateTimeZone|string|null $timeZone = null): DateTimeZone
     {
         if (is_string($timeZone)) {
-            self::$dateTimeZone = new DateTimeZone($timeZone);
+            $this->dateTimeZone = new DateTimeZone($timeZone);
         } elseif ($timeZone instanceof DateTimeZone) {
-            self::$dateTimeZone = $timeZone;
-        } elseif (!self::$dateTimeZone instanceof DateTimeZone) {
-            self::$dateTimeZone = new DateTimeZone(ini_get('date.timezone'));
+            $this->dateTimeZone = $timeZone;
+        } elseif (!$this->dateTimeZone instanceof DateTimeZone) {
+            $this->dateTimeZone = new DateTimeZone(ini_get('date.timezone'));
         }
 
-        return self::$dateTimeZone;
+        return $this->dateTimeZone;
     }
 
-    public static function dateTimeFormat(string|null $dateTimeFormat = null): string
+    public function dateTimeFormat(string|null $dateTimeFormat = null): string
     {
         if ($dateTimeFormat !== null) {
-            self::$dateTimeFormat = $dateTimeFormat;
+            $this->dateTimeFormat = $dateTimeFormat;
         }
 
-        return self::$dateTimeFormat;
+        return $this->dateTimeFormat;
     }
 }

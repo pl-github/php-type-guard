@@ -26,12 +26,12 @@ final class AsDateTimeStringTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->originalDateTimeFormat = Convert::dateTimeFormat();
+        $this->originalDateTimeFormat = Convert::instance()->dateTimeFormat();
     }
 
     protected function tearDown(): void
     {
-        Convert::dateTimeFormat($this->originalDateTimeFormat);
+        Convert::instance()->dateTimeFormat($this->originalDateTimeFormat);
     }
 
     public function testConvertsStrings(): void
@@ -49,7 +49,7 @@ final class AsDateTimeStringTest extends TestCase
 
     public function testDateTimeFormatCanBeChanged(): void
     {
-        Convert::dateTimeFormat('Y-m-d');
+        Convert::instance()->dateTimeFormat('Y-m-d');
 
         self::assertSame('2010-09-08', asDateTimeString('2010-09-08T07:06:05+02:00'));
     }
