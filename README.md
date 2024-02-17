@@ -1,5 +1,7 @@
 # Type Guard
 
+[![codecov](https://codecov.io/gh/pl-github/php-TYPE-GUARD/graph/badge.svg?token=IYNVCXQS8A)](https://codecov.io/gh/pl-github/php-TYPE-GUARD)
+
 A PHP library to ensure correctness of types providing a readable interface.
 
 The library is helpfull to

@@ -1,0 +1,40 @@
+name: Code Coverage
+
+on:
+  pull_request: null
+  push:
+    branches:
+      - "main"
+
+jobs:
+  code_coverage:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@master
+        with:
+          php-version: 8.3
+          coverage: xdebug
+      - name: Load dependencies from cache
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-php8.3-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-php8.3-composer-
+
+      - run: composer install --prefer-dist --no-progress --no-suggest
+      - run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+      - uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          files: build/logs/clover.xml # optional
+          flags: unittests # optional
+          name: codecov-umbrella # optional
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
