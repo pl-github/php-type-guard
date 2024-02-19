@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plook\TypeGuard\Assert;
+namespace Plook\TypeGuard;
 
 use InvalidArgumentException;
 

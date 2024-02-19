@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plook\Tests\TypeGuard;
+namespace Plook\Tests\TypeGuard\Helper;
 
 use Stringable;
 

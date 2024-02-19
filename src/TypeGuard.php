@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plook\TypeGuard\Convert;
+namespace Plook\TypeGuard;
 
 use DateTimeImmutable;
 use DateTimeZone;
@@ -15,7 +15,7 @@ use function is_int;
 use function is_scalar;
 use function is_string;
 
-final class Convert
+final class TypeGuard
 {
     private DateTimeZone|null $dateTimeZone = null;
 
@@ -116,7 +116,7 @@ final class Convert
         return (string) $value;
     }
 
-    /** @return ($value is null ? null : DateTimeImmutable) */
+    /** @return DateTimeImmutable */
     public function asDateTimeImmutable(mixed $value): DateTimeImmutable|null
     {
         if ($value === null) {
@@ -174,5 +174,21 @@ final class Convert
         }
 
         return $this->dateTimeFormat;
+    }
+
+    /**
+     * @param ?T $value
+     *
+     * @return T
+     *
+     * @template T
+     */
+    public function notNull(mixed $value): mixed
+    {
+        if ($value === null) {
+            throw InvalidValue::null();
+        }
+
+        return $value;
     }
 }

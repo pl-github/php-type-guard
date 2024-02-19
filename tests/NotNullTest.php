@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Plook\Tests\TypeGuard\Assert;
+namespace Plook\Tests\TypeGuard;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
-use Plook\TypeGuard\Assert\Assert;
-use Plook\TypeGuard\Assert\InvalidValue;
+use Plook\TypeGuard\InvalidValue;
+use Plook\TypeGuard\TypeGuard;
 use stdClass;
 
 use function basename;
-use function Plook\TypeGuard\Assert\notNull;
+use function Plook\TypeGuard\notNull;
 use function sprintf;
 
-#[CoversClass(Assert::class)]
+#[CoversClass(TypeGuard::class)]
 #[CoversClass(InvalidValue::class)]
-#[CoversFunction('\Plook\TypeGuard\Assert\notNull')]
+#[CoversFunction('\Plook\TypeGuard\notNull')]
 final class NotNullTest extends TestCase
 {
     public function testDoesNotTouchInts(): void

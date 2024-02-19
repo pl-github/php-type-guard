@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Plook\Tests\TypeGuard\Convert;
+namespace Plook\Tests\TypeGuard;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
-use Plook\Tests\TypeGuard\StringableInt;
-use Plook\Tests\TypeGuard\StringableString;
-use Plook\TypeGuard\Convert\Convert;
-use Plook\TypeGuard\Convert\NotConvertable;
+use Plook\Tests\TypeGuard\Helper\StringableInt;
+use Plook\Tests\TypeGuard\Helper\StringableString;
+use Plook\TypeGuard\NotConvertable;
+use Plook\TypeGuard\TypeGuard;
 
 use function basename;
-use function Plook\TypeGuard\Convert\asBool;
+use function Plook\TypeGuard\asBool;
 use function sprintf;
 
-#[CoversClass(Convert::class)]
+#[CoversClass(TypeGuard::class)]
 #[CoversClass(NotConvertable::class)]
-#[CoversFunction('\Plook\TypeGuard\Convert\asBool')]
+#[CoversFunction('\Plook\TypeGuard\asBool')]
 final class AsBoolTest extends TestCase
 {
     public function testDoesNotTouchBools(): void

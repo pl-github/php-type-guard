@@ -4,11 +4,22 @@
 
 A PHP library to ensure correctness of types providing a readable interface.
 
-The library is helpfull to
+## Installation
+
+```shell
+$ composer require plook/type-guard
+```
 
 ## Example
 
 ```php
+use function Plook\TypeGuard\asBool;
+use function Plook\TypeGuard\asDateTimeImmutable;
+use function Plook\TypeGuard\asFloat;
+use function Plook\TypeGuard\asInt;
+use function Plook\TypeGuard\asString;
+use function Plook\TypeGuard\notNull;
+
 $row = $this->fetchProjectRow(123);
 
 $project = new Project(
@@ -23,7 +34,7 @@ $project = new Project(
 
 ## Provided helper functions
 
-### Type Conversion
+### Ensure Types
 * `asBool($value)` Converts input value to a boolean, but passes `null`.
 * `asFloat($value)` Converts input value to a float, but passes `null`.
 * `asInt($value)` Converts input value to a int, but passes `null`.
@@ -34,21 +45,19 @@ $project = new Project(
 ### Assertions
 * `notNull($value)` Throws an exception if the value is `null` otherwise it passes the original value.
 
-## Installation
-
-```shell
-$ composer require plook/type-guard
-```
-
 ## Configuration
 
 ### Setting the default target time zone of `DateTimeImmutable` objects
 ```php
-Convert::instance()->timeZone('Australia/Adelaide');
-Convert::instance()->timeZone(new DateTimeZone('Australia/Adelaide'));
+use Plook\TypeGuard\TypeGuard;
+
+TypeGuard::instance()->timeZone('Australia/Adelaide');
+TypeGuard::instance()->timeZone(new DateTimeZone('Australia/Adelaide'));
 ```
 
 ### Setting the default format of date time strings
 ```php
-Convert::instance()->dateTimeFormat(DateTimeInterface::ATOM);
+use Plook\TypeGuard\TypeGuard;
+
+TypeGuard::instance()->dateTimeFormat(DateTimeInterface::ATOM);
 ```

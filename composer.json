@@ -28,8 +28,7 @@
             "Plook\\TypeGuard\\": "src/"
         },
         "files": [
-            "src/Assert/functions.php",
-            "src/Convert/functions.php"
+            "src/functions.php"
         ]
     },
     "autoload-dev": {

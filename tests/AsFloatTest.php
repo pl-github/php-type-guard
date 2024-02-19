@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Plook\Tests\TypeGuard\Convert;
+namespace Plook\Tests\TypeGuard;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
-use Plook\Tests\TypeGuard\StringableFloat;
-use Plook\TypeGuard\Convert\Convert;
-use Plook\TypeGuard\Convert\NotConvertable;
+use Plook\Tests\TypeGuard\Helper\StringableFloat;
+use Plook\TypeGuard\NotConvertable;
+use Plook\TypeGuard\TypeGuard;
 
 use function basename;
-use function Plook\TypeGuard\Convert\asFloat;
+use function Plook\TypeGuard\asFloat;
 use function sprintf;
 
-#[CoversClass(Convert::class)]
+#[CoversClass(TypeGuard::class)]
 #[CoversClass(NotConvertable::class)]
-#[CoversFunction('\Plook\TypeGuard\Convert\asFloat')]
+#[CoversFunction('\Plook\TypeGuard\asFloat')]
 final class AsFloatTest extends TestCase
 {
     public function testDoesNotTouchFloats(): void
