@@ -9,14 +9,16 @@ parameters:
         - '#has a nullable return type declaration#'
         - '#has parameter .+ with a nullable type declaration#'
         - '#has parameter .+ with null as default value#'
+        - '#PHPUnit\\Framework\\Assert::assert.+\(\) .* will always evaluate to true#'
     ergebnis:
         noExtends:
           classesAllowedToBeExtended:
               - InvalidArgumentException
 
 includes:
-#    - vendor/brainbits/phpstan-rules/rules.neon
+    - vendor/brainbits/phpstan-rules/rules.neon
     - vendor/ergebnis/phpstan-rules/rules.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-phpunit/rules.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
