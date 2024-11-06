@@ -42,6 +42,12 @@ $project = new Project(
 * `asDateTimeString($value)` Converts input value to a date string including the timezone, but passes `null`.
 * `asString($value)` Converts input value to a string, but passes `null`.
 
+### Converters
+* `blankAsNull($value)` Converts input value to `null`, if it is a blank string `''`.
+* `falseAsNull($value)` Converts input value to `null`, if it is a boolean `false`.
+* `falsyAsNull($value)` Converts input value to `null`, if it is a falsy value `false`, `''`, `0`, ...
+* `zeroAsNull($value)` Converts input value to `null`, if it is a zero `0` or `0.0`.
+
 ### Assertions
 * `notNull($value)` Throws an exception if the value is `null` otherwise it passes the original value.
 
