@@ -154,6 +154,70 @@ final class TypeGuard
         return $value->format($this->dateTimeFormat());
     }
 
+    /**
+     * @param T $value
+     *
+     * @return T|null
+     *
+     * @template T
+     */
+    public function blankAsNull(mixed $value): mixed
+    {
+        if ($value === '') {
+            return null;
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param T $value
+     *
+     * @return T|null
+     *
+     * @template T
+     */
+    public function falseAsNull(mixed $value): mixed
+    {
+        if ($value === false) {
+            return null;
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param T $value
+     *
+     * @return T|null
+     *
+     * @template T
+     */
+    public function zeroAsNull(mixed $value): mixed
+    {
+        if ($value === 0 || $value === 0.0) {
+            return null;
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param T $value
+     *
+     * @return T|null
+     *
+     * @template T
+     */
+    public function falsyAsNull(mixed $value): mixed
+    {
+        if (! (bool) $value) {
+            return null;
+        }
+
+        return $value;
+    }
+
     public function timeZone(DateTimeZone|string|null $timeZone = null): DateTimeZone
     {
         if (is_string($timeZone)) {
