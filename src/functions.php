@@ -64,6 +64,66 @@ if (!function_exists('\Plook\TypeGuard\asDateTimeString')) { // @codeCoverageIgn
     }
 }
 
+if (!function_exists('\Plook\TypeGuard\blankAsNull')) { // @codeCoverageIgnore
+
+    /**
+     * @param T $value
+     *
+     * @return T|null
+     *
+     * @template T
+     */
+    function blankAsNull(mixed $value): mixed
+    {
+        return TypeGuard::instance()->blankAsNull($value);
+    }
+}
+
+if (!function_exists('\Plook\TypeGuard\falseAsNull')) { // @codeCoverageIgnore
+
+    /**
+     * @param T $value
+     *
+     * @return T|null
+     *
+     * @template T
+     */
+    function falseAsNull(mixed $value): mixed
+    {
+        return TypeGuard::instance()->falseAsNull($value);
+    }
+}
+
+if (!function_exists('\Plook\TypeGuard\zeroAsNull')) { // @codeCoverageIgnore
+
+    /**
+     * @param T $value
+     *
+     * @return T|null
+     *
+     * @template T
+     */
+    function zeroAsNull(mixed $value): mixed
+    {
+        return TypeGuard::instance()->zeroAsNull($value);
+    }
+}
+
+if (!function_exists('\Plook\TypeGuard\falsyAsNull')) { // @codeCoverageIgnore
+
+    /**
+     * @param T $value
+     *
+     * @return T|null
+     *
+     * @template T
+     */
+    function falsyAsNull(mixed $value): mixed
+    {
+        return TypeGuard::instance()->falsyAsNull($value);
+    }
+}
+
 if (!function_exists('\Plook\TypeGuard\notNull')) { // @codeCoverageIgnore
 
     /**
