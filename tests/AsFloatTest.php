@@ -17,7 +17,7 @@ use function sprintf;
 
 #[CoversClass(TypeGuard::class)]
 #[CoversClass(NotConvertable::class)]
-#[CoversFunction('\Plook\TypeGuard\asFloat')]
+#[CoversFunction('Plook\TypeGuard\asFloat')]
 final class AsFloatTest extends TestCase
 {
     public function testDoesNotTouchFloats(): void

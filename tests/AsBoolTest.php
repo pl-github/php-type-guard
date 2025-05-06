@@ -18,7 +18,7 @@ use function sprintf;
 
 #[CoversClass(TypeGuard::class)]
 #[CoversClass(NotConvertable::class)]
-#[CoversFunction('\Plook\TypeGuard\asBool')]
+#[CoversFunction('Plook\TypeGuard\asBool')]
 final class AsBoolTest extends TestCase
 {
     public function testDoesNotTouchBools(): void

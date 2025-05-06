@@ -17,7 +17,7 @@ use function sprintf;
 
 #[CoversClass(TypeGuard::class)]
 #[CoversClass(NotConvertable::class)]
-#[CoversFunction('\Plook\TypeGuard\asString')]
+#[CoversFunction('Plook\TypeGuard\asString')]
 final class AsStringTest extends TestCase
 {
     public function testDoesNotTouchStrings(): void

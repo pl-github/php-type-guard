@@ -15,7 +15,7 @@ use function Plook\TypeGuard\zeroAsNull;
 
 #[CoversClass(TypeGuard::class)]
 #[CoversClass(NotConvertable::class)]
-#[CoversFunction('\Plook\TypeGuard\zeroAsNull')]
+#[CoversFunction('Plook\TypeGuard\zeroAsNull')]
 final class ZeroAsNullTest extends TestCase
 {
     public function testConvertsZeroIntToNull(): void

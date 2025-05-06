@@ -17,7 +17,7 @@ use function sprintf;
 
 #[CoversClass(TypeGuard::class)]
 #[CoversClass(InvalidValue::class)]
-#[CoversFunction('\Plook\TypeGuard\notNull')]
+#[CoversFunction('Plook\TypeGuard\notNull')]
 final class NotNullTest extends TestCase
 {
     public function testDoesNotTouchInts(): void
