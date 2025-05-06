@@ -21,11 +21,13 @@ final class TypeGuard
 
     private string $dateTimeFormat = 'c';
 
+    private static TypeGuard $typeGuard;
+
     public static function instance(): self
     {
-        static $instance = new self();
+        self::$typeGuard ??= new self();
 
-        return $instance;
+        return self::$typeGuard;
     }
 
     /** @return ($value is null ? null : bool) */
