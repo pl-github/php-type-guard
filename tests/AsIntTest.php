@@ -17,7 +17,7 @@ use function sprintf;
 
 #[CoversClass(TypeGuard::class)]
 #[CoversClass(NotConvertable::class)]
-#[CoversFunction('\Plook\TypeGuard\asInt')]
+#[CoversFunction('Plook\TypeGuard\asInt')]
 final class AsIntTest extends TestCase
 {
     public function testDoesNotTouchInts(): void

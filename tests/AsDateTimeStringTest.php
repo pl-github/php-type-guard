@@ -17,9 +17,9 @@ use function sprintf;
 
 #[CoversClass(TypeGuard::class)]
 #[CoversClass(NotConvertable::class)]
-#[CoversFunction('\Plook\TypeGuard\asDateTimeString')]
-#[CoversFunction('\Plook\TypeGuard\asDateTimeImmutable')]
-#[CoversFunction('\Plook\TypeGuard\asString')]
+#[CoversFunction('Plook\TypeGuard\asDateTimeString')]
+#[CoversFunction('Plook\TypeGuard\asDateTimeImmutable')]
+#[CoversFunction('Plook\TypeGuard\asString')]
 final class AsDateTimeStringTest extends TestCase
 {
     private readonly string $originalDateTimeFormat;

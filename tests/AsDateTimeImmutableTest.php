@@ -19,8 +19,8 @@ use function sprintf;
 
 #[CoversClass(TypeGuard::class)]
 #[CoversClass(NotConvertable::class)]
-#[CoversFunction('\Plook\TypeGuard\asDateTimeImmutable')]
-#[CoversFunction('\Plook\TypeGuard\asString')]
+#[CoversFunction('Plook\TypeGuard\asDateTimeImmutable')]
+#[CoversFunction('Plook\TypeGuard\asString')]
 final class AsDateTimeImmutableTest extends TestCase
 {
     private readonly DateTimeZone $originalTimeZone;
