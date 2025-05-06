@@ -26,7 +26,7 @@ final class InvalidValue extends InvalidArgumentException
             $line = $trace['line'] ?? null;
 
             if ($file !== null && $line !== null && !str_contains($file, __DIR__)) {
-                $me->message = sprintf('%s in %s:%s', $me->message, basename($file), $line);
+                $me->message = sprintf('%s in %s:%s', $message, basename($file), $line);
                 break;
             }
         }
