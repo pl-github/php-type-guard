@@ -1,8 +1,8 @@
 {
     "name": "plook/type-guard",
-    "type": "library",
     "description": "Library to ensure correctness of types with a readable interface.",
     "license": "LGPL-2.1-or-later",
+    "type": "library",
     "authors": [
         {
             "name": "Phillip Look",
@@ -15,14 +15,15 @@
     "require-dev": {
         "brainbits/phpcs-standard": "^8.0.0",
         "brainbits/phpstan-rules": "^4.0.0",
+        "ergebnis/composer-normalize": "^2.47",
         "ergebnis/phpstan-rules": "^2.8.0",
-        "thecodingmachine/phpstan-safe-rule": "^1.4.0",
+        "phpstan/phpstan": "^2.1.16",
         "phpstan/phpstan-phpunit": "^2.0.6",
-        "squizlabs/php_codesniffer": "^3.12.2",
-        "phpstan/phpstan": "^2.1.14",
         "phpstan/phpstan-strict-rules": "^2.0.4",
-        "phpunit/phpunit": "^12.1.4",
-        "rector/rector": "^2.0.15"
+        "phpunit/phpunit": "^12.1.5",
+        "rector/rector": "^2.0.16",
+        "squizlabs/php_codesniffer": "^3.13.0",
+        "thecodingmachine/phpstan-safe-rule": "^1.4.0"
     },
     "autoload": {
         "psr-4": {
@@ -39,25 +40,26 @@
     },
     "config": {
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true
         }
     },
     "scripts": {
-        "test": "phpunit",
-        "cs": "vendor/bin/phpcs",
-        "cs:fix": "vendor/bin/phpcbf",
         "analyse": "vendor/bin/phpstan analyze",
-        "rector": "vendor/bin/rector --dry-run",
-        "rector:fix": "vendor/bin/rector",
         "check": [
             "@cs",
             "@analyse",
             "@test",
             "@rector"
         ],
+        "cs": "vendor/bin/phpcs",
+        "cs:fix": "vendor/bin/phpcbf",
         "fix": [
             "@rector:fix",
             "@cs:fix"
-        ]
+        ],
+        "rector": "vendor/bin/rector --dry-run",
+        "rector:fix": "vendor/bin/rector",
+        "test": "phpunit"
     }
 }
