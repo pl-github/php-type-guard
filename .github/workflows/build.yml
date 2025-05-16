@@ -51,3 +51,6 @@ jobs:
 
       - name: "Tests"
         run: "vendor/bin/phpunit"
+
+      - name: "Composer Normalizer"
+        run: "composer normalize --dry-run"
