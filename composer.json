@@ -41,5 +41,23 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "cs": "vendor/bin/phpcs",
+        "cs:fix": "vendor/bin/phpcbf",
+        "analyse": "vendor/bin/phpstan analyze",
+        "rector": "vendor/bin/rector --dry-run",
+        "rector:fix": "vendor/bin/rector",
+        "check": [
+            "@cs",
+            "@analyse",
+            "@test",
+            "@rector"
+        ],
+        "fix": [
+            "@rector:fix",
+            "@cs:fix"
+        ]
     }
 }
