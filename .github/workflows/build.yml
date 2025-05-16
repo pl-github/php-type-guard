@@ -54,3 +54,15 @@ jobs:
 
       - name: "Composer Normalizer"
         run: "composer normalize --dry-run"
+
+  release:
+    name: "Release"
+
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: Run semantic-release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
