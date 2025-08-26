@@ -16,14 +16,14 @@
         "brainbits/phpcs-standard": "^8.0.0",
         "brainbits/phpstan-rules": "^4.0.0",
         "ergebnis/composer-normalize": "^2.47",
-        "ergebnis/phpstan-rules": "^2.8.0",
-        "phpstan/phpstan": "^2.1.16",
-        "phpstan/phpstan-phpunit": "^2.0.6",
-        "phpstan/phpstan-strict-rules": "^2.0.4",
-        "phpunit/phpunit": "^12.1.5",
-        "rector/rector": "^2.0.16",
-        "squizlabs/php_codesniffer": "^3.13.0",
-        "thecodingmachine/phpstan-safe-rule": "^1.4.0"
+        "ergebnis/phpstan-rules": "^2.11.0",
+        "phpstan/phpstan": "^2.1.22",
+        "phpstan/phpstan-phpunit": "^2.0.7",
+        "phpstan/phpstan-strict-rules": "^2.0.6",
+        "phpunit/phpunit": "^12.3.6",
+        "rector/rector": "^2.1.4",
+        "squizlabs/php_codesniffer": "^3.13.2",
+        "thecodingmachine/phpstan-safe-rule": "^1.4.1"
     },
     "autoload": {
         "psr-4": {
