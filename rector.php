@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
-use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitSelfCallRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
@@ -37,7 +36,6 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,
-        SetList::STRICT_BOOLEANS,
         SetList::NAMING,
         SetList::PRIVATIZATION,
         SetList::TYPE_DECLARATION,
@@ -46,7 +44,6 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->rules([
-        AddLiteralSeparatorToNumberRector::class,
         DeclareStrictTypesRector::class,
         PreferPHPUnitSelfCallRector::class,
     ]);
