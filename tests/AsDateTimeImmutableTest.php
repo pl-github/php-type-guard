@@ -145,7 +145,7 @@ final class AsDateTimeImmutableTest extends TestCase
     {
         TypeGuard::instance()->timeZone('Australia/Adelaide');
 
-        $result = asDateTimeImmutable('2010-09-08 07:06:05', null);
+        $result = asDateTimeImmutable('2010-09-08 07:06:05');
 
         self::assertInstanceOf(DateTimeImmutable::class, $result);
         self::assertSame('2010-09-08T07:06:05+09:30', $result->format('c'));
