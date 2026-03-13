@@ -94,6 +94,63 @@ final class AsDateTimeImmutableTest extends TestCase
         self::assertNull(asDateTimeImmutable(null));
     }
 
+    public function testTimezoneParameterOverridesDefaultWithDateTimeZone(): void
+    {
+        $result = asDateTimeImmutable('2010-09-08 07:06:05', new DateTimeZone('Australia/Adelaide'));
+
+        self::assertInstanceOf(DateTimeImmutable::class, $result);
+        self::assertSame('2010-09-08T07:06:05+09:30', $result->format('c'));
+    }
+
+    public function testTimezoneParameterOverridesDefaultWithString(): void
+    {
+        $result = asDateTimeImmutable('2010-09-08 07:06:05', 'Australia/Adelaide');
+
+        self::assertInstanceOf(DateTimeImmutable::class, $result);
+        self::assertSame('2010-09-08T07:06:05+09:30', $result->format('c'));
+    }
+
+    public function testTimezoneParameterOverridesChangedDefault(): void
+    {
+        TypeGuard::instance()->timeZone('Europe/Berlin');
+
+        $result = asDateTimeImmutable('2010-09-08 07:06:05', 'Australia/Adelaide');
+
+        self::assertInstanceOf(DateTimeImmutable::class, $result);
+        self::assertSame('2010-09-08T07:06:05+09:30', $result->format('c'));
+    }
+
+    public function testTimezoneParameterConvertsSameDateTimeImmutable(): void
+    {
+        $input = new DateTimeImmutable('2010-09-08T07:06:05', new DateTimeZone('Australia/Adelaide'));
+
+        $result = asDateTimeImmutable($input, 'Australia/Adelaide');
+
+        self::assertInstanceOf(DateTimeImmutable::class, $result);
+        self::assertSame('Australia/Adelaide', $result->getTimezone()->getName());
+        self::assertSame('2010-09-08T07:06:05+09:30', $result->format('c'));
+    }
+
+    public function testTimezoneParameterConvertsDifferentDateTimeImmutable(): void
+    {
+        $input = new DateTimeImmutable('2010-09-08T07:06:05+00:00');
+
+        $result = asDateTimeImmutable($input, new DateTimeZone('Australia/Adelaide'));
+
+        self::assertInstanceOf(DateTimeImmutable::class, $result);
+        self::assertSame('2010-09-08T16:36:05+09:30', $result->format('c'));
+    }
+
+    public function testNullTimezoneParameterUsesDefault(): void
+    {
+        TypeGuard::instance()->timeZone('Australia/Adelaide');
+
+        $result = asDateTimeImmutable('2010-09-08 07:06:05', null);
+
+        self::assertInstanceOf(DateTimeImmutable::class, $result);
+        self::assertSame('2010-09-08T07:06:05+09:30', $result->format('c'));
+    }
+
     public function testOnlyScalarsAreConvertable(): void
     {
         $this->expectException(NotConvertable::class);
