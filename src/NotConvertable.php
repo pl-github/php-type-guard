@@ -38,6 +38,11 @@ final class NotConvertable extends InvalidArgumentException
         return self::withMessage(sprintf('%s is not convertable to date time object', get_debug_type($value)));
     }
 
+    public static function toDateTimeZone(mixed $value): self
+    {
+        return self::withMessage(sprintf('%s is not convertable to date time zone', get_debug_type($value)));
+    }
+
     private static function withMessage(string $message): self
     {
         $me = new self($message);

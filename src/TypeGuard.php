@@ -147,6 +147,28 @@ final class TypeGuard
         return new DateTimeImmutable(asString($value), $tz);
     }
 
+    /** @return ($value is null ? null : DateTimeZone) */
+    public function asDateTimeZone(mixed $value): DateTimeZone|null
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        if ($value instanceof DateTimeZone) {
+            return $value;
+        }
+
+        if ($value instanceof Stringable) {
+            $value = (string) $value;
+        }
+
+        if (!is_string($value)) {
+            throw NotConvertable::toDateTimeZone($value);
+        }
+
+        return new DateTimeZone($value);
+    }
+
     /** @return ($value is null ? null : string) */
     public function asDateTimeString(mixed $value): string|null
     {
