@@ -124,16 +124,14 @@ final class TypeGuard
             return null;
         }
 
-        $tz = $timeZone instanceof DateTimeZone
-            ? $timeZone
-            : ($timeZone !== null ? new DateTimeZone($timeZone) : $this->timeZone());
+        $timeZone = $this->asDateTimeZone($timeZone) ?? $this->timeZone();
 
         if ($value instanceof DateTimeImmutable) {
-            if ($value->getTimezone()->getName() === $tz->getName()) {
+            if ($value->getTimezone()->getName() === $timeZone->getName()) {
                 return $value;
             }
 
-            return $value->setTimezone($tz);
+            return $value->setTimezone($timeZone);
         }
 
         if ($value instanceof Stringable) {
@@ -144,7 +142,7 @@ final class TypeGuard
             throw NotConvertable::toDateTime($value);
         }
 
-        return new DateTimeImmutable(asString($value), $tz);
+        return new DateTimeImmutable(asString($value), $timeZone);
     }
 
     /** @return ($value is null ? null : DateTimeZone) */
