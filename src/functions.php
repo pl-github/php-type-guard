@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Plook\TypeGuard;
 
 use DateTimeImmutable;
+use DateTimeZone;
 
 use function function_exists;
 
@@ -49,9 +50,11 @@ if (!function_exists('\Plook\TypeGuard\asString')) { // @codeCoverageIgnore
 if (!function_exists('\Plook\TypeGuard\asDateTimeImmutable')) { // @codeCoverageIgnore
 
     /** @return ($value is null ? null : DateTimeImmutable) */
-    function asDateTimeImmutable(mixed $value): DateTimeImmutable|null
-    {
-        return TypeGuard::instance()->asDateTimeImmutable($value);
+    function asDateTimeImmutable(
+        mixed $value,
+        DateTimeZone|string|null $timeZone = null,
+    ): DateTimeImmutable|null {
+        return TypeGuard::instance()->asDateTimeImmutable($value, $timeZone);
     }
 }
 
