@@ -118,19 +118,22 @@ final class TypeGuard
         return (string) $value;
     }
 
-    /** @return DateTimeImmutable */
-    public function asDateTimeImmutable(mixed $value): DateTimeImmutable|null
+    public function asDateTimeImmutable(mixed $value, DateTimeZone|string|null $timeZone = null): DateTimeImmutable|null
     {
         if ($value === null) {
             return null;
         }
 
+        $tz = $timeZone instanceof DateTimeZone
+            ? $timeZone
+            : ($timeZone !== null ? new DateTimeZone($timeZone) : $this->timeZone());
+
         if ($value instanceof DateTimeImmutable) {
-            if ($value->getTimezone()->getName() === $this->timeZone()->getName()) {
+            if ($value->getTimezone()->getName() === $tz->getName()) {
                 return $value;
             }
 
-            return $value->setTimezone($this->timeZone());
+            return $value->setTimezone($tz);
         }
 
         if ($value instanceof Stringable) {
@@ -141,7 +144,7 @@ final class TypeGuard
             throw NotConvertable::toDateTime($value);
         }
 
-        return new DateTimeImmutable(asString($value), $this->timeZone());
+        return new DateTimeImmutable(asString($value), $tz);
     }
 
     /** @return ($value is null ? null : string) */
