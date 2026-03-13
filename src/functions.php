@@ -58,6 +58,15 @@ if (!function_exists('\Plook\TypeGuard\asDateTimeImmutable')) { // @codeCoverage
     }
 }
 
+if (!function_exists('\Plook\TypeGuard\asDateTimeZone')) { // @codeCoverageIgnore
+
+    /** @return ($value is null ? null : DateTimeZone) */
+    function asDateTimeZone(mixed $value): DateTimeZone|null
+    {
+        return TypeGuard::instance()->asDateTimeZone($value);
+    }
+}
+
 if (!function_exists('\Plook\TypeGuard\asDateTimeString')) { // @codeCoverageIgnore
 
     /** @return ($value is null ? null : string) */
