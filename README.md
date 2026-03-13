@@ -39,6 +39,7 @@ $project = new Project(
 * `asFloat($value)` Converts input value to a float, but passes `null`.
 * `asInt($value)` Converts input value to a int, but passes `null`.
 * `asDateTimeImmutable($value)` Converts input value to a `DateTimeImmutable` object, but passes `null`.
+* `asDateTimeZone($value)` Converts input value to a `DateTimeZone` object, but passes `null`.
 * `asDateTimeString($value)` Converts input value to a date string including the timezone, but passes `null`.
 * `asString($value)` Converts input value to a string, but passes `null`.
 
