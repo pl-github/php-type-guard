@@ -15,15 +15,15 @@
     "require-dev": {
         "brainbits/phpcs-standard": "^8.0.1",
         "brainbits/phpstan-rules": "^4.0.0",
-        "ergebnis/composer-normalize": "^2.50",
+        "ergebnis/composer-normalize": "^2.52",
         "ergebnis/phpstan-rules": "^2.13.1",
-        "phpstan/phpstan": "^2.1.40",
-        "phpstan/phpstan-phpunit": "^2.0.16",
-        "phpstan/phpstan-strict-rules": "^2.0.10",
-        "phpunit/phpunit": "^13.0.5",
-        "rector/rector": "^2.3.8",
-        "squizlabs/php_codesniffer": "^4.0.1",
-        "thecodingmachine/phpstan-safe-rule": "^1.4.3"
+        "phpstan/phpstan": "^2.2.8",
+        "phpstan/phpstan-phpunit": "^2.0.18",
+        "phpstan/phpstan-strict-rules": "^2.0.12",
+        "phpunit/phpunit": "^13.3.1",
+        "rector/rector": "^2.6.3",
+        "squizlabs/php_codesniffer": "^4.0.4",
+        "thecodingmachine/phpstan-safe-rule": "^1.4.7"
     },
     "autoload": {
         "psr-4": {
