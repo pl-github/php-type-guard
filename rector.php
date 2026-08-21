@@ -23,17 +23,11 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->sets([
         LevelSetList::UP_TO_PHP_84,
 
-        PHPUnitSetList::PHPUNIT_40,
-        PHPUnitSetList::PHPUNIT_50,
-        PHPUnitSetList::PHPUNIT_60,
-        PHPUnitSetList::PHPUNIT_70,
-        PHPUnitSetList::PHPUNIT_80,
-        PHPUnitSetList::PHPUNIT_90,
-        PHPUnitSetList::PHPUNIT_100,
-        PHPUnitSetList::PHPUNIT_110,
-        PHPUnitSetList::PHPUNIT_120,
+        PHPUnitSetList::PHPUNIT_MOCK_TO_STUB,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+        PHPUnitSetList::PHPUNIT_NARROW_ASSERTS,
         PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
+        PHPUnitSetList::COMPOSER_BASED,
 
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
