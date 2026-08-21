@@ -19,6 +19,11 @@ jobs:
         php-version:
           - "8.4"
           - "8.5"
+          - "8.6"
+        include:
+          # PHP 8.6 is not released yet, so dependencies do not allow it yet
+          - php-version: "8.6"
+            composer-options: "--ignore-platform-req=php+"
 
     steps:
       - name: "Checkout"
@@ -38,7 +43,7 @@ jobs:
           restore-keys: "php-${{ matrix.php-version }}-composer-"
 
       - name: "Install highest dependencies"
-        run: "composer update --prefer-dist --no-interaction --no-progress --no-suggest"
+        run: "composer update --prefer-dist --no-interaction --no-progress --no-suggest ${{ matrix.composer-options }}"
 
       - name: "Code Style"
         run: "vendor/bin/phpcs"
